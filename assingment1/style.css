@@ -1,0 +1,41 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /* background-color: #282d35; */
+  padding: 0.5rem;
+}
+
+/* .navbar {
+  padding: 0 16px;
+  background-color: #21222a;
+  height: 90px;
+} */
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+ul {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+}
+
+ul li {
+  /* margin-bottom: 2rem; */
+  font-size: 20px;
+  list-style: none;
+}
+
+ul li a {
+  text-decoration: none;
+  color: black;
+}

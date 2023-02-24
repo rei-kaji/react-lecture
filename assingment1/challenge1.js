@@ -75,7 +75,6 @@ function Challenge2() {
     </div>
   );
 }
-
 ReactDOM.createRoot(document.getElementById("root")).render(
   <div>
     <Navbar />

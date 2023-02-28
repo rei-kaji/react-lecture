@@ -1,0 +1,42 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+h3 {
+  padding: 0;
+  margin: 0;
+}
+
+.App {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.joke_card {
+  padding: 1rem;
+  background-color: lightgray;
+  width: 25vw;
+  height: 30vh;
+  color: black;
+  font-size: 1.5rem;
+}
+
+.joke_title {
+  height: 12vh;
+}
+
+.joke_body {
+  background-color: black;
+  color: black;
+  height: 12vh;
+}
+
+.joke_body:hover {
+  background-color: beige;
+}

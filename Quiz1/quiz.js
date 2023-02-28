@@ -65,7 +65,7 @@ function chalenge3(arrayInput) {
   return returnArray;
 }
 
-console.log(chalenge2(pokemon));
+console.log(chalenge3(pokemon));
 // ```
 
 // Challenge 4:

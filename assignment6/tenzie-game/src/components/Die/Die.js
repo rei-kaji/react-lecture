@@ -5,7 +5,7 @@ const Die = (props) => {
   // value /value
   // isHeld /valie
   // holdDice /function
-  console.log(props);
+  //   console.log(props);
   const { value, isHeld, holdDice } = props;
 
   const styles = {

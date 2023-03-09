@@ -37,6 +37,17 @@ function App() {
       die.id === id ? { ...die, isHeld: !die.isHeld } : die
     );
     setDice(newDice);
+
+    let remainNumber = 1;
+    for (const element of dice) {
+      if (element.isHeld === true) {
+        remainNumber++;
+      }
+    }
+    if (remainNumber === 10) {
+      alert("Congratulations! You won!");
+    }
+    console.log(remainNumber);
   }
 
   const dieElements = (

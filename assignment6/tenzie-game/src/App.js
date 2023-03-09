@@ -25,14 +25,34 @@ function App() {
   function rollDice() {
     // Challenge 3:
     // You will setDice, but before you need to check isHeld propery, if its true, you will not give a new random number for die, but if isHeld is false you will generate a new random number for this die.
+    const newDice = dice.map((die) => (die.isHeld ? die : generateNewDie()));
+    setDice(newDice);
   }
 
   function holdDice(id) {
     // Challenge 2: Once i click the dice, I need to
     // change isHeld property as toggle
+
+    const newDice = dice.map((die) =>
+      die.id === id ? { ...die, isHeld: !die.isHeld } : die
+    );
+    setDice(newDice);
   }
 
-  const dieElements = "";
+  const dieElements = (
+    <>
+      {dice.map(({ value, isHeld, id }) => (
+        <Die
+          key={id}
+          holdDice={() => {
+            holdDice(id);
+          }}
+          value={value}
+          isHeld={isHeld}
+        />
+      ))}
+    </>
+  );
   // dice array so you can map(iterate) and pass the props to component, and you can use this variable to display the component,
   // Challenge 1: create react element using map function
   // and pass all props also holdDice function to Die component,

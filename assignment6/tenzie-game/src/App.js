@@ -38,16 +38,11 @@ function App() {
     );
     setDice(newDice);
 
-    let remainNumber = 1;
-    for (const element of dice) {
-      if (element.isHeld === true) {
-        remainNumber++;
-      }
-    }
+    const heldDice = newDice.filter(({ isHeld }) => isHeld);
+    const remainNumber = heldDice.length + 1;
     if (remainNumber === 10) {
       alert("Congratulations! You won!");
     }
-    console.log(remainNumber);
   }
 
   const dieElements = (

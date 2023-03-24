@@ -2,7 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import SnippetCard from "../Card/SnippetCard/SnippetCard";
 import SeeMoreButton from "../Button/SeeMoreButton/SeeMoreButton";
-import { SiTailwindcss, SiReact } from "react-icons/si";
+import { SiTailwindcss, SiReact, SiHtml5 } from "react-icons/si";
+import { BsFiletypeScss } from "react-icons/bs";
 const Wrapper = styled.div`
   padding: 1rem 2rem;
   display: flex;
@@ -30,7 +31,7 @@ const SnippetSection = ({ sectionName }) => {
         <SnippetCard
           title={"Nextjs Starter"}
           content={"A dead simple for nextjs project."}
-          tech={["React", "Tailwind"]}
+          techs={[<SiTailwindcss />, <SiReact />]}
           rating={8}
         />
         <SnippetCard
@@ -38,13 +39,13 @@ const SnippetSection = ({ sectionName }) => {
           content={
             "A dead simple for html 5 boilerplate project. Included setup for minify css, html minify, SEO setting."
           }
-          tech={["React", "Tailwind"]}
+          techs={[<SiTailwindcss />, <BsFiletypeScss />, <SiHtml5 />]}
           rating={12}
         />
         <SnippetCard
           title={"Nextjs Starter 2.0"}
           content={"A dead simple for nextjs project with firebase setup."}
-          tech={["React", "Tailwind"]}
+          techs={[<SiTailwindcss />, <SiReact />]}
           rating={89}
         />
         <SnippetCard
@@ -52,7 +53,7 @@ const SnippetSection = ({ sectionName }) => {
           content={
             "A dead simple for html 5 boilerplate project. Included setup for minify css, html minify, SEO setting."
           }
-          tech={["React", "Tailwind"]}
+          techs={[<SiTailwindcss />, <BsFiletypeScss />, <SiHtml5 />]}
           rating={8}
         />
         {sectionName == "Snippet" && (
@@ -60,7 +61,7 @@ const SnippetSection = ({ sectionName }) => {
             <SnippetCard
               title={"Nextjs Starter 2.0"}
               content={"A dead simple for nextjs project with firebase setup."}
-              tech={["React", "Tailwind"]}
+              techs={[<SiTailwindcss />, <SiReact />]}
               rating={8}
             />
             <SnippetCard
@@ -68,7 +69,7 @@ const SnippetSection = ({ sectionName }) => {
               content={
                 "A dead simple for html 5 boilerplate project. Included setup for minify css, html minify, SEO setting."
               }
-              tech={["React", "Tailwind"]}
+              techs={[<SiTailwindcss />, <BsFiletypeScss />, <SiHtml5 />]}
               rating={8}
             />
           </>

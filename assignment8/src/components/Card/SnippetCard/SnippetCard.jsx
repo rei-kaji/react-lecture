@@ -39,7 +39,22 @@ const SnippetCardBottom = styled.div`
   }
 `;
 
-const SnippetCard = ({ title, content, rating = 8 }) => {
+const SnippetCardIcon = styled.div`
+  width: 39px;
+  height: 39px;
+  background-color: ${(props) => (props.theme === "light" ? "#fff" : "#333")};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  margin-right: 0.5rem;
+  svg {
+    color: ${(props) => (props.theme === "light" ? "#333" : "#fff")};
+    font-size: 26px;
+  }
+`;
+
+const SnippetCard = ({ title, content, rating = 8, techs }) => {
   const { theme } = useContext(ThemeContext);
   return (
     <SnippetCardWrapper theme={theme}>
@@ -48,7 +63,14 @@ const SnippetCard = ({ title, content, rating = 8 }) => {
         <p>{content}</p>
       </SnippetCardTop>
       <SnippetCardBottom>
-        <div className="snippet-bottom-logos"></div>
+        <div className="snippet-bottom-logos">
+          {techs &&
+            techs.map((tech, index) => (
+              <SnippetCardIcon theme={theme} key={index}>
+                {tech}
+              </SnippetCardIcon>
+            ))}
+        </div>
         <div>
           <AiFillStar color="#FFF615" size={18} />
           <p>{rating} Stars</p>

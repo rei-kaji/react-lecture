@@ -3,6 +3,7 @@ import ThemeContext from "./context/ThemeContext";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Nav from "./components/Nav/Nav";
+import MobileNav from "./components/Nav/MobileNav";
 import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home/Home";
 import Snippet from "./pages/Snippet/Snippet";
@@ -42,6 +43,7 @@ function App() {
             />
             <Route path="/portfolio" element={<Portfolio />} />
           </Routes>
+          <MobileNav />
           <Footer />
         </BrowserRouter>
       </div>

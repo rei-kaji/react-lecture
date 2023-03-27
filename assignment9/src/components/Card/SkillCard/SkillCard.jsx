@@ -7,6 +7,10 @@ const SkillCardWrapper = styled.div`
   width: 262px;
   height: auto;
 
+  @media (max-width: 768px) {
+    width: 10rem;
+  }
+
   background: ${(props) => (props.theme === "light" ? "#333" : "#fff")};
   color: ${(props) => (props.theme === "light" ? "#fff" : "#333")};
   border-radius: 12px;
@@ -26,6 +30,10 @@ const SkillCardWrapper = styled.div`
     letter-spacing: 1px;
     margin-top: 56px;
     margin-bottom: 12px;
+    @media (max-width: 768px) {
+      text-align: left;
+      width: 100%;
+    }
   }
 
   small {
@@ -37,32 +45,36 @@ const SkillCardWrapper = styled.div`
     align-items: center;
     text-align: center;
     letter-spacing: 1px;
+    @media (max-width: 768px) {
+      text-align: left;
+      width: 100%;
+    }
   }
 `;
 
 const EllipseShape = styled.div`
-    position: absolute;
-    top: -36px;
-    width: 76px;
-    height: 76px;
-    background: linear-gradient(134.01deg, #4ca9ff 38.91%, #3bf686 103.79%);
+  position: absolute;
+  top: -36px;
+  width: 76px;
+  height: 76px;
+  background: linear-gradient(134.01deg, #4ca9ff 38.91%, #3bf686 103.79%);
+  border-radius: 50%;
+  #inner {
+    position: relative;
+    left: 2px;
+    top: 2px;
+    width: 72px;
+    height: 72px;
+    background: ${(props) => (props.theme === "light" ? "#333" : "#fff")};
     border-radius: 50%;
-    #inner{
-        position:relative;
-        left: 2px;
-        top: 2px;
-        width: 72px;
-        height: 72px;
-        background: ${(props) => (props.theme === "light" ? "#333" : "#fff")};
-        border-radius: 50%;
 
-        display: flex;
-        justify-content:center;
-        align-items:center;
-        svg{
-            font-size: 32px;
-        }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    svg {
+      font-size: 32px;
     }
+  }
 `;
 
 const SkillCard = ({ title, content, icon }) => {
@@ -70,14 +82,10 @@ const SkillCard = ({ title, content, icon }) => {
   return (
     <SkillCardWrapper theme={theme}>
       <EllipseShape theme={theme}>
-        <div id="inner">
-            {icon}
-        </div>
+        <div id="inner">{icon}</div>
       </EllipseShape>
       <h6>{title}</h6>
-      <small>
-        {content}
-      </small>
+      <small>{content}</small>
     </SkillCardWrapper>
   );
 };

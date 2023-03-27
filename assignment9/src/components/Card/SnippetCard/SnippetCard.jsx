@@ -7,8 +7,8 @@ import axios from "axios";
 import { AiFillStar } from "react-icons/ai";
 
 const SnippetCardWrapper = styled.div`
-  width: 556px;
-  height: 282px;
+  width: 40rem;
+  height: 20rem;
   border-radius: 20px;
   text-align: left;
   padding: 2rem 3rem;
@@ -17,9 +17,9 @@ const SnippetCardWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
+  margin: 0 auto;
   @media (max-width: 768px) {
-    width: 100%;
+    width: 20rem;
   }
 `;
 
@@ -37,6 +37,12 @@ const SnippetCardBottom = styled.div`
     align-items: center;
     gap: 6px;
   }
+
+  .snippet-bottom-logos {
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
 `;
 
 const Tag = styled.div`
@@ -46,22 +52,23 @@ const Tag = styled.div`
   border-radius: 6px;
 `;
 
-const SnippetCard = ({ 
-  title, 
-  content = "Commodo deserunt officia mollit pariatur cupidatat consectetur quis amet magna ipsum Lorem consectetur deserunt. Deserunt incididunt elit ullamco fugiat eiusmod voluptate proident minim.", 
-  rating = 8, 
-  languages }) => {
+const SnippetCard = ({
+  title,
+  content = "Commodo deserunt officia mollit pariatur cupidatat consectetur quis amet magna ipsum Lorem consectetur deserunt. Deserunt incididunt elit ullamco fugiat eiusmod voluptate proident minim.",
+  rating = 8,
+  languages,
+}) => {
   const { theme } = useContext(ThemeContext);
-  const [ language, setLanguage ] = useState([]);
+  const [language, setLanguage] = useState([]);
 
   useEffect(() => {
     fetchLanguageInformation();
-  }, [])
+  }, []);
 
   const fetchLanguageInformation = async () => {
     const response = await axios.get(languages);
-    setLanguage(Object.keys(response.data))
-  }
+    setLanguage(Object.keys(response.data));
+  };
 
   return (
     <SnippetCardWrapper theme={theme}>
@@ -71,9 +78,10 @@ const SnippetCard = ({
       </SnippetCardTop>
       <SnippetCardBottom>
         <div className="snippet-bottom-logos">
-          {language && language.map(item => {
-            return <Tag theme={theme}>{item}</Tag>
-          })}
+          {language &&
+            language.map((item) => {
+              return <Tag theme={theme}>{item}</Tag>;
+            })}
         </div>
         <div>
           <AiFillStar color="#FFF615" size={18} />

@@ -1,23 +1,26 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
 
 const Wrapper = styled.div`
-    width: 500px;
-    h2{
-        margin-bottom: 1rem;
-    }
+  width: 500px;
+  h2 {
+    margin-bottom: 1rem;
     @media (max-width: 768px) {
-      width: 100%;
-    } 
-`
+      text-align: center;
+    }
+  }
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+`;
 
 const TextCard = ({ title, content }) => {
   return (
     <Wrapper>
-        <h2>{title}</h2>
-        <p>{content}</p>
+      <h2>{title}</h2>
+      <p>{content}</p>
     </Wrapper>
-  )
-}
+  );
+};
 
-export default TextCard
+export default TextCard;

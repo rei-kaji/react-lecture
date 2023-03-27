@@ -7,17 +7,21 @@ import Contact from "../Contact/Contact";
 import SkillCard from "../Card/SkillCard/SkillCard";
 import { HiGlobe, HiClipboardList } from "react-icons/hi";
 const Wrapper = styled.div`
-  @media (max-width: 768px) {
+  @media (min-width: 768px) {
     display: none;
   }
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
 `;
 
 const HeroTitle = styled.h1`
-  margin-top: 3rem;
+  margin-top: 1.5rem;
   font-style: normal;
   font-weight: 700;
-  font-size: 56px;
-  line-height: 72px;
+  font-size: 2rem;
+  text-align: center;
+  line-height: 45px;
   letter-spacing: 1px;
   background: ${(props) =>
     props.theme === "light"
@@ -27,26 +31,19 @@ const HeroTitle = styled.h1`
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-fill-color: transparent;
-  margin-bottom: 3rem;
-
-  @media (max-width: 768px) {
-    font-size: 32px;
-    line-height: 48px;
-  }
+  margin-bottom: 1.5rem;
 `;
 
 const RowWrapper = styled.div`
   // display: grid;
   // grid-template-columns: 1fr 1fr 2fr;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
   gap: 2rem;
-  margin: 4rem 0;
-
-  @media (max-width: 768px) {
-    // text-align: center;
-    margin: 0 auto;
-  }
+  margin: 2rem 0;
 `;
 
 const GridWrapper = styled.div`
@@ -61,38 +58,33 @@ const GridWrapper = styled.div`
     }
   }
   .list {
-    display: flex;
-    gap: 2rem;
-    flex-wrap: wrap;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr 1fr;
 
     margin-top: 2rem;
-
-    // @media (max-width: 768px) {
-    //   margin-top: 2rem;
-    //   justify-content: center;
-    //   gap: 3rem;
-    // }
+    justify-content: center;
+    // gap: 3rem;
   }
 `;
 
-const Hero = () => {
+const MobileHero = () => {
   const { theme } = useContext(ThemeContext);
   return (
     <Wrapper>
-      <HeroTitle theme={theme}>
-        Hi Im Hiroki, a special human with some ability to love learning and
-        working on teamwork.{" "}
-      </HeroTitle>
-
       <RowWrapper>
         <Avatar />
+        <Contact title={"Lets connect"} />
+        <HeroTitle theme={theme}>
+          Hi Im Hiroki, a special human with some ability to love learning and
+          working on teamwork.
+        </HeroTitle>
         <TextCard
           title="Biography"
           content={
             "Getting Buff +1 for learning, Buff +2 for documentation and more buff on managing team. Exicited on React, UX Research and Agile."
           }
         />
-        <Contact title={"Lets connect"} />
       </RowWrapper>
       <GridWrapper>
         <TextCard
@@ -122,4 +114,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default MobileHero;

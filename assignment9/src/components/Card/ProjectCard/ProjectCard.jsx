@@ -4,19 +4,24 @@ import ThemeContext from "../../../context/ThemeContext";
 
 const ProjectCardWrapper = styled.div`
   max-width: 1141px;
+  padding: 1rem;
   height: auto;
   display: flex;
-  flex-wrap: wrap;
+  margin: 0 auto;
+  @media (max-width: 900px) {
+    flex-wrap: wrap;
+  }
   // gap: 1rem;
   // gap:20px;
 `;
 const ProjectCardDesing = styled.div`
-  width: 556px;
+  // width: 556px;
+  width: 42rem;
   height: 282px;
-  background-color: ${props => props.theme === "light" ? "#333" : "#fff"};
-  overflow:hidden;
+  background-color: ${(props) => (props.theme === "light" ? "#333" : "#fff")};
+  overflow: hidden;
   position: relative;
-  img{
+  img {
     position: absolute;
     width: 80%;
     left: 0;
@@ -24,14 +29,41 @@ const ProjectCardDesing = styled.div`
     top: 100px;
     margin: 0 auto;
   }
+  @media (max-width: 768px) {
+    // width: 20rem;
+    display: none;
+  }
+`;
+
+const MobileProjectCardDesing = styled.div`
+  // width: 556px;
+  width: 42rem;
+  height: 282px;
+  background-color: ${(props) => (props.theme === "light" ? "#333" : "#fff")};
+  overflow: hidden;
+  position: relative;
+  img {
+    position: absolute;
+    width: 80%;
+    left: 0;
+    right: 0;
+    top: 100px;
+    margin: 0 auto;
+  }
+  @media (max-width: 768px) {
+    width: 20rem;
+  }
 `;
 
 const ProjectCardContent = styled.div`
-  max-width: 560px;
+  // max-width: 560px;
+
+  width: 46rem;
   margin-left: 20px;
   height: auto;
   // padding: 1rem 2rem;
-  h5{
+
+  h5 {
     font-style: normal;
     font-weight: 700;
     font-size: 18px;
@@ -40,7 +72,7 @@ const ProjectCardContent = styled.div`
     align-items: center;
     letter-spacing: 1px;
   }
-  h3{
+  h3 {
     font-style: normal;
     font-weight: 700;
     font-size: 48px;
@@ -51,7 +83,55 @@ const ProjectCardContent = styled.div`
     letter-spacing: 1px;
     margin: 1rem 0;
   }
-  p{
+  p {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 32px;
+
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.014em;
+  }
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
+const MobileProjectCardContent = styled.div`
+  width: 46rem;
+  margin-left: 20px;
+  height: auto;
+  // padding: 1rem 2rem;
+  @media (min-width: 768px) {
+    display: none;
+  }
+  @media (max-width: 768px) {
+    width: 21rem;
+    display: block;
+  }
+  h5 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+  }
+  h3 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 56px;
+
+    display: flex;
+    align-items: center;
+    letter-spacing: 1px;
+    margin: 1rem 0;
+  }
+  p {
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
@@ -64,7 +144,7 @@ const ProjectCardContent = styled.div`
 `;
 
 const ProjectCard = ({ type, title, content, image }) => {
-  const { theme } = useContext(ThemeContext)
+  const { theme } = useContext(ThemeContext);
   return (
     <ProjectCardWrapper theme={theme}>
       <ProjectCardDesing theme={theme}>
@@ -73,10 +153,16 @@ const ProjectCard = ({ type, title, content, image }) => {
       <ProjectCardContent>
         <h5 className="right-side-head">{type}</h5>
         <h3 className="right-side-title">{title}</h3>
-        <p className="right-side-description">
-          {content}
-        </p>
+        <p className="right-side-description">{content}</p>
       </ProjectCardContent>
+      <MobileProjectCardContent>
+        <h3 className="right-side-title">{title}</h3>
+        <h5 className="right-side-head">{type}</h5>
+        <MobileProjectCardDesing theme={theme}>
+          <img src={image} alt="" className="project-image" />
+        </MobileProjectCardDesing>
+        <p className="right-side-description">{content}</p>
+      </MobileProjectCardContent>
     </ProjectCardWrapper>
   );
 };

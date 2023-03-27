@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { GrInstagram } from "react-icons/gr"
-import { FiTwitter, FiFacebook } from "react-icons/fi"
+import { GrInstagram } from "react-icons/gr";
+import { FiTwitter, FiFacebook } from "react-icons/fi";
 import ThemeContext from "../../context/ThemeContext";
 
 const ContactWrapper = styled.div`
@@ -11,14 +11,18 @@ const ContactWrapper = styled.div`
     font-size: 28px;
     line-height: 72px;
     letter-spacing: 1px;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
   .icons {
     display: flex;
     gap: 20px;
-    a{
-      color: ${props => props.theme === "light" ? "#333" : "#fff"}
+    a {
+      color: ${(props) => (props.theme === "light" ? "#333" : "#fff")};
     }
-    svg{
+    svg {
       font-size: 24px;
       cursor: pointer;
     }
@@ -31,9 +35,15 @@ const Contact = ({ title }) => {
     <ContactWrapper theme={theme}>
       <h4>{title}</h4>
       <div className="icons">
-        <a href="https://www.instagram.com/666_dagui/" target="_blank"><GrInstagram /></a>
-        <a href="#"><FiTwitter /></a>
-        <a href="#"><FiFacebook /></a>
+        <a href="https://www.instagram.com/666_dagui/" target="_blank">
+          <GrInstagram />
+        </a>
+        <a href="#">
+          <FiTwitter />
+        </a>
+        <a href="#">
+          <FiFacebook />
+        </a>
       </div>
     </ContactWrapper>
   );

@@ -7,20 +7,20 @@ const SearchBarWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 64px;
-  background-color: ${props => props.theme === "light" ? "#333" : "#fff"};
+  background-color: ${(props) => (props.theme === "light" ? "#333" : "#fff")};
   border-radius: 10px;
   padding: 10px 12px;
   input {
-    font-size: 18px;
+    font-size: 0.8rem;
     width: 100%;
     height: 100%;
     border: none;
     outline: none;
     padding: 0 10px;
-    background-color: ${props => props.theme === "light" ? "#333" : "#fff"};
-    color: ${props => props.theme === "light" ? "#fff" : "#333"};
+    background-color: ${(props) => (props.theme === "light" ? "#333" : "#fff")};
+    color: ${(props) => (props.theme === "light" ? "#fff" : "#333")};
     &::placeholder {
-      color: ${props => props.theme === "light" ? "#fff" : "#333"};
+      color: ${(props) => (props.theme === "light" ? "#fff" : "#333")};
     }
   }
   svg {
@@ -30,15 +30,18 @@ const SearchBarWrapper = styled.div`
     font-size: 26px;
     cursor: pointer;
     border: none;
-    color: ${props => props.theme === "light" ? "#fff" : "#333"};
+    color: ${(props) => (props.theme === "light" ? "#fff" : "#333")};
   }
 `;
 
 const SearchBar = ({ handleSearch }) => {
-    const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
   return (
     <SearchBarWrapper theme={theme}>
-      <input onChange={handleSearch} placeholder="Type your favorite snippet here, hehehe ....." />
+      <input
+        onChange={handleSearch}
+        placeholder="Type your favorite snippet here, hehehe ....."
+      />
       <BiSearch />
     </SearchBarWrapper>
   );

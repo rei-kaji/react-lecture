@@ -9,7 +9,7 @@ const SnippetContainer = styled.div`
   background-color: ${(props) => (props.theme === "light" ? "#fff" : "#333")};
   color: ${(props) => (props.theme === "light" ? "#333" : "#fff")};
   .inner {
-    width: 1140px;
+    // width: 100rem;
     margin: 0 auto;
   }
 
@@ -24,9 +24,9 @@ const SnippetContainer = styled.div`
     font-size: 18px;
     margin-bottom: 1.4rem;
   }
-  .pagination{
+  .pagination {
     display: flex;
-    justify-content:center;
+    justify-content: center;
   }
 `;
 
@@ -35,16 +35,20 @@ const GridWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 1rem;
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const PageButton = styled.button`
   padding: 0.25rem 0.7rem;
   margin: 0 4px;
   border: none;
-  background-color: ${(props) => (props.active ? "orange" : (props.theme === "light" ? "#333" : "#fff"))};
+  background-color: ${(props) =>
+    props.active ? "orange" : props.theme === "light" ? "#333" : "#fff"};
   color: ${(props) => (props.theme === "light" ? "#fff" : "#333")};
   border-radius: 4px;
-  cursor:pointer;
+  cursor: pointer;
   font-weight: bolder;
 `;
 
@@ -52,46 +56,57 @@ const Snippet = ({ repositories }) => {
   const { theme } = useContext(ThemeContext);
   const [showRepositories, setShowRepositories] = useState(repositories);
   const [search, setSearch] = useState("");
-  
-  const [currentPage, setCurrentPage] = useState(1)
+
+  const [currentPage, setCurrentPage] = useState(1);
   const itemPerPage = 6;
 
   useEffect(() => {
-    setShowRepositories(filterRepositories())
-  }, [search])
-
+    setShowRepositories(filterRepositories());
+  }, [search]);
 
   const handleSearch = (event) => {
     setSearch(event.target.value);
     setCurrentPage(1);
-  }
+  };
 
   const filterRepositories = () => {
-    if(!search){
+    if (!search) {
       return repositories;
     }
 
     return repositories.filter((repo) => {
       return repo.name.toLowerCase().includes(search.toLowerCase());
-    })
-  }
+    });
+  };
 
   const handleChangePage = (pageNumber) => {
     setCurrentPage(pageNumber);
-  }
+  };
 
   const renderPageNumber = () => {
     const totalPages = Math.ceil(showRepositories.length / itemPerPage);
     const pageNumbers = [];
 
-    for(let i = 1; i <= totalPages; i++){
-      pageNumbers.push(<PageButton key={i} onClick={() => handleChangePage(i)} active={i === currentPage} theme={theme}>{i}</PageButton>)
+    for (let i = 1; i <= totalPages; i++) {
+      pageNumbers.push(
+        <PageButton
+          key={i}
+          onClick={() => handleChangePage(i)}
+          active={i === currentPage}
+          theme={theme}
+        >
+          {i}
+        </PageButton>
+      );
     }
 
     return pageNumbers;
-  }
+  };
 
-  const paginatedRepos = showRepositories.slice((currentPage - 1) * itemPerPage, currentPage * itemPerPage);
+  const paginatedRepos = showRepositories.slice(
+    (currentPage - 1) * itemPerPage,
+    currentPage * itemPerPage
+  );
 
   return (
     <SnippetContainer theme={theme}>
@@ -100,16 +115,19 @@ const Snippet = ({ repositories }) => {
         <h5>Search code snippet</h5>
         <SearchBar handleSearch={handleSearch} />
         <GridWrapper>
-          {
-            paginatedRepos.map((repo, index) => {
-              return <SnippetCard key={index} title={repo.name} rating={repo.stargazers_count} languages={repo.languages_url} />
-            })
-          }
+          {paginatedRepos.map((repo, index) => {
+            return (
+              <SnippetCard
+                key={index}
+                title={repo.name}
+                rating={repo.stargazers_count}
+                languages={repo.languages_url}
+              />
+            );
+          })}
         </GridWrapper>
 
-        <div className="pagination">
-          {renderPageNumber()}
-        </div>
+        <div className="pagination">{renderPageNumber()}</div>
       </div>
     </SnippetContainer>
   );

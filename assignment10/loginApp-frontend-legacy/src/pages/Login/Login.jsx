@@ -10,6 +10,9 @@ const LoginContainer = styled.div`
   h1 {
     text-align: center;
   }
+  h3 {
+    color: red;
+  }
   form {
     display: flex;
     flex-direction: column;
@@ -45,6 +48,7 @@ const FormController = styled.div`
 const Login = () => {
   const navigate = useNavigate();
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  const isRegistered = useSelector((state) => state.registered);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -52,23 +56,37 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if(email && password){
-      dispatch(login({email, password}));
-      navigate("/profile");
+    if (email && password) {
+      dispatch(login({ email, password }));
     }
-  }
+
+    navigate("/profile");
+  };
+
+  console.log("isRegistered", isRegistered);
 
   return (
     <LoginContainer>
+      {isRegistered && <h3>UserInfo Registered!</h3>}
       <h1>Login {isLoggedIn}</h1>
       <form>
         <FormController>
           <label htmlFor="email">Email</label>
-          <input type="email" id="email" placeholder="email" onChange={(ev) => setEmail(ev.target.value)} />
+          <input
+            type="email"
+            id="email"
+            placeholder="email"
+            onChange={(ev) => setEmail(ev.target.value)}
+          />
         </FormController>
         <FormController>
           <label htmlFor="password">Password</label>
-          <input type="password" id="password" placeholder="password" onChange={(ev) => setPassword(ev.target.value)} />
+          <input
+            type="password"
+            id="password"
+            placeholder="password"
+            onChange={(ev) => setPassword(ev.target.value)}
+          />
         </FormController>
         <button onClick={handleLogin}>Login</button>
       </form>

@@ -3,9 +3,10 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { register } from "../../reducers/userSlice";
 import { useNavigate } from "react-router-dom";
+
 const RegisterContainer = styled.div`
   padding: 1rem 2rem;
-  h1{
+  h1 {
     text-align: center;
   }
   form {
@@ -22,7 +23,7 @@ const RegisterContainer = styled.div`
       border-radius: 4px;
       font-size: 1rem;
     }
-    button{
+    button {
       height: 2.4rem;
       margin-top: 1rem;
       border: none;
@@ -41,55 +42,63 @@ const FormController = styled.div`
 `;
 
 const Register = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [userName, setUserName] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const [ user, setUser ] = useState({
-    username: "",
-    fullName: "",
-    email: "",
-    password: "",
-  });
+  const dispatch = useDispatch();
 
-  const handleChanges = (ev) => {
-    const { name, value } = ev.target; 
-    setUser((prevUser) => ({
-      ...prevUser,
-      [name]: value,
-    }));
-  }
-
-  const handleRegister = (event) => {
-    event.preventDefault();
-    if(!user.username || !user.fullName || !user.email || !user.password){
-      return;
+  const handleRegister = (e) => {
+    e.preventDefault();
+    if (userName && fullName && email && password) {
+      dispatch(register({ userName, fullName, email, password }));
+      navigate("/login");
     }
-    dispatch(register(user));
-    navigate("/login");
-  }
-
+  };
   return (
     <RegisterContainer>
       <h1>Register</h1>
-      <form onSubmit={handleRegister}>
+      <form>
         <FormController>
-          <label htmlFor="username">Username</label>
-          <input onChange={handleChanges} type="text" name="username" id="username" placeholder="username" />
+          <label htmlFor="username">UserName</label>
+          <input
+            type="text"
+            id="username"
+            placeholder="username"
+            onChange={(ev) => setUserName(ev.target.value)}
+          />
         </FormController>
         <FormController>
-          <label htmlFor="fullName">Full Name</label>
-          <input onChange={handleChanges} type="text" name="fullName" id="fullName" placeholder="fullName" />
+          <label htmlFor="fullname">FullName</label>
+          <input
+            type="text"
+            id="fullname"
+            placeholder="fullname"
+            onChange={(ev) => setFullName(ev.target.value)}
+          />
         </FormController>
         <FormController>
           <label htmlFor="email">Email</label>
-          <input onChange={handleChanges} type="email" name="email" id="email" placeholder="email" />
+          <input
+            type="email"
+            id="email"
+            placeholder="email"
+            onChange={(ev) => setEmail(ev.target.value)}
+          />
         </FormController>
         <FormController>
           <label htmlFor="password">Password</label>
-          <input onChange={handleChanges} type="password" name="password" id="password" placeholder="password" />
+          <input
+            type="password"
+            id="password"
+            placeholder="password"
+            onChange={(ev) => setPassword(ev.target.value)}
+          />
         </FormController>
 
-        <button>Register</button>
+        <button onClick={handleRegister}>Register</button>
       </form>
     </RegisterContainer>
   );
